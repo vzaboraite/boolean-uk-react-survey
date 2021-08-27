@@ -3,8 +3,14 @@ import { useState } from "react";
 
 function Form() {
   // state
-  const [color, setColor] = useState(null);
-  const [spendTime, setSpendTime] = useState([]);
+  const [color, setColor] = useState("");
+  // const [spendTime, setSpendTime] = useState([]);
+  const [spendTime, setSpendTime] = useState({
+    swimming: false,
+    bathing: false,
+    chatting: false,
+    noTime: false,
+  });
   const [review, setReview] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -27,21 +33,35 @@ function Form() {
 
   //   checkbox input handler
 
+  // const handleSpendTimeInput = (event) => {
+  //   console.log(
+  //     "Inside handleSpendTimeInput: ",
+  //     event.target.value,
+  //     event.target.checked
+  //   );
+
+  //   if (event.target.checked) {
+  //     setSpendTime([...spendTime, event.target.value]);
+  //   } else {
+  //     const filteredSpendTime = spendTime.filter(
+  //       (time) => event.target.value !== time
+  //     );
+  //     setSpendTime(filteredSpendTime);
+  //   }
+  // };
+
   const handleSpendTimeInput = (event) => {
     console.log(
       "Inside handleSpendTimeInput: ",
       event.target.value,
       event.target.checked
     );
+    const updatedSpendTime = {
+      ...spendTime,
+      [event.target.value]: event.target.checked,
+    };
 
-    if (event.target.checked) {
-      setSpendTime([...spendTime, event.target.value]);
-    } else {
-      const filteredSpendTime = spendTime.filter(
-        (time) => event.target.value !== time
-      );
-      setSpendTime(filteredSpendTime);
-    }
+    setSpendTime(updatedSpendTime);
   };
 
   //   text input handlers
@@ -165,7 +185,7 @@ function Form() {
           name="review"
           cols="30"
           rows="10"
-          value={review}
+          // value={review}
           onChange={handleTexareaInput}
         ></textarea>
       </label>
