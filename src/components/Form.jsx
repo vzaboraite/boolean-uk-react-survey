@@ -1,4 +1,6 @@
 import { useState } from "react";
+import Checkboxes from "./Checkboxes";
+import RadioButtons from "./RadioButtons";
 // TODO: create submitHandler()
 
 function Form() {
@@ -84,101 +86,8 @@ function Form() {
   return (
     <form className="form">
       <h2>Tell us what you think about your rubber duck!</h2>
-      <div className="form__group radio">
-        <h3>How do you rate your rubber duck colour?</h3>
-        <ul>
-          <li>
-            <input
-              id="color-one"
-              type="radio"
-              name="color"
-              value="1"
-              onChange={handleRadioInput}
-            />
-            <label htmlFor="color-one">1</label>
-          </li>
-          <li>
-            <input
-              id="color-two"
-              type="radio"
-              name="color"
-              value="2"
-              onChange={handleRadioInput}
-            />
-            <label htmlFor="color-two">2</label>
-          </li>
-          <li>
-            <input
-              id="color-three"
-              type="radio"
-              name="color"
-              value="3"
-              onChange={handleRadioInput}
-            />
-            <label htmlFor="color-three">3</label>
-          </li>
-          <li>
-            <input
-              id="color-four"
-              type="radio"
-              name="color"
-              value="4"
-              onChange={handleRadioInput}
-            />
-            <label htmlFor="color-four">4</label>
-          </li>
-        </ul>
-      </div>
-      <div className="form__group">
-        <h3>How do you like to spend time with your rubber duck</h3>
-        <ul>
-          <li>
-            <label>
-              <input
-                name="spend-time"
-                type="checkbox"
-                value="swimming"
-                // checked={spendTime.includes("swimming")}
-                onChange={handleSpendTimeInput}
-              />
-              Swimming
-            </label>
-          </li>
-          <li>
-            <label>
-              <input
-                name="spend-time"
-                type="checkbox"
-                value="bathing"
-                onChange={handleSpendTimeInput}
-              />
-              Bathing
-            </label>
-          </li>
-          <li>
-            <label>
-              <input
-                name="spend-time"
-                type="checkbox"
-                value="chatting"
-                onChange={handleSpendTimeInput}
-              />
-              Chatting
-            </label>
-          </li>
-          <li>
-            <label>
-              <input
-                name="spend-time"
-                type="checkbox"
-                value="noTime"
-                onChange={handleSpendTimeInput}
-              />
-              I don't like to spend time with it
-            </label>
-          </li>
-        </ul>
-      </div>
+      <RadioButtons color={color} onChange={handleRadioInput} />
+      <Checkboxes spendTime={spendTime} onChange={handleSpendTimeInput} />
       <label>
         What else have you got to say about your rubber duck?
         <textarea
