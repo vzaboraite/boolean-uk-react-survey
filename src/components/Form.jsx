@@ -1,12 +1,15 @@
 import { useState } from "react";
 import Checkboxes from "./Checkboxes";
 import RadioButtons from "./RadioButtons";
-// TODO: create submitHandler()
 
 function Form() {
   // state
   const [color, setColor] = useState("");
+
+  /* state for spendTime as an array */
   // const [spendTime, setSpendTime] = useState([]);
+
+  /* state for spendTime as an object */
   const [spendTime, setSpendTime] = useState({
     swimming: false,
     bathing: false,
@@ -16,6 +19,7 @@ function Form() {
   const [review, setReview] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
+  const [answers, setAnswers] = useState([]);
 
   console.log("State: ", {
     color,
@@ -23,17 +27,20 @@ function Form() {
     review,
     username,
     email,
+    answers,
   });
 
   /* HANDLER FUNCTIONS */
-  //   radio input handler
+  /*   radio input handler */
 
   const handleRadioInput = (event) => {
     console.log("inside handleRadioInput: ", event.target.value);
     setColor(event.target.value);
   };
 
-  //   checkbox input handler
+  /*  checkbox input handler */
+
+  /* checkbox input handler for storing state in an array */
 
   // const handleSpendTimeInput = (event) => {
   //   console.log(
@@ -52,6 +59,8 @@ function Form() {
   //   }
   // };
 
+  /* checkbox input handler for storing state in an object */
+
   const handleSpendTimeInput = (event) => {
     console.log(
       "Inside handleSpendTimeInput: ",
@@ -66,7 +75,7 @@ function Form() {
     setSpendTime(updatedSpendTime);
   };
 
-  //   text input handlers
+  /* text input handlers */
   const handleTexareaInput = (event) => {
     console.log("Inside handleTexareaInput: ", event.target.value);
     setReview(event.target.value);
@@ -82,9 +91,17 @@ function Form() {
     setEmail(event.target.value);
   };
 
-  // Component
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+    console.log("inside handleFormSubmit: ", event);
+    console.log("Submitted");
+
+    setAnswers([...answers, { color, spendTime, review, username, email }]);
+  };
+
+  /* Component */
   return (
-    <form className="form">
+    <form className="form" onSubmit={handleFormSubmit}>
       <h2>Tell us what you think about your rubber duck!</h2>
       <RadioButtons color={color} onChange={handleRadioInput} />
       <Checkboxes spendTime={spendTime} onChange={handleSpendTimeInput} />
